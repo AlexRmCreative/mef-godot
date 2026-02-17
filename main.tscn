@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c2oo3g2inwaj2"]
+
+[ext_resource type="Script" uid="uid://do80oveomd5r" path="res://addons/mef/runtime/core/mef_event_trigger.gd" id="1_0xm2m"]
+[ext_resource type="Resource" uid="uid://cs5kaiglqtqe2" path="res://addons/mef/runtime/presets/new_preset.tres" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://blkkldc5gaoqh" path="res://addons/mef/runtime/conditions/new_condition.tscn" id="3_272bh"]
+[ext_resource type="Script" uid="uid://yt7dpy11mfeh" path="res://addons/mef/runtime/conditions/mef_condition.gd" id="4_7mycd"]
+[ext_resource type="PackedScene" uid="uid://ckovrb62asenv" path="res://addons/mef/runtime/effects/new_effect.tscn" id="5_kek77"]
+[ext_resource type="Script" uid="uid://dptssr7ceigls" path="res://addons/mef/runtime/effects/mef_effect.gd" id="6_4c57u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[node name="Main" type="Node" unique_id=262438077]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1204610578]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=770698056]
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MEFEventTrigger" type="Node" parent="." unique_id=1272661947 node_paths=PackedStringArray("trigger_area")]
+script = ExtResource("1_0xm2m")
+trigger_area = NodePath("../Area3D")
+preset = ExtResource("2_7mycd")
+metadata/_custom_type_script = "uid://do80oveomd5r"
+
+[node name="NewCondition" type="Node" parent="MEFEventTrigger" unique_id=289995711 instance=ExtResource("3_272bh")]
+script = ExtResource("4_7mycd")
+metadata/_custom_type_script = "uid://yt7dpy11mfeh"
+
+[node name="NewEffect" type="Node" parent="MEFEventTrigger" unique_id=1994765067 instance=ExtResource("5_kek77")]
+script = ExtResource("6_4c57u")
+metadata/_custom_type_script = "uid://dptssr7ceigls"

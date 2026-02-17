@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MEFEventContext" format=3 uid="uid://bvfbrvmoqdh5y"]
+
+[ext_resource type="Script" uid="uid://wwpo75tk3pyv" path="res://addons/mef/runtime/context/mef_event_context.gd" id="1_yq7t0"]
+
+[resource]
+script = ExtResource("1_yq7t0")
+custom_data = {
+"\"player_ref\"": null
+}
+metadata/_custom_type_script = "uid://wwpo75tk3pyv"

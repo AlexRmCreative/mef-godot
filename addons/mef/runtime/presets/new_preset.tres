@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MEFEventPreset" format=3 uid="uid://cs5kaiglqtqe2"]
+
+[ext_resource type="PackedScene" uid="uid://blkkldc5gaoqh" path="res://addons/mef/runtime/conditions/new_condition.tscn" id="1_xnl4r"]
+[ext_resource type="PackedScene" uid="uid://ckovrb62asenv" path="res://addons/mef/runtime/effects/new_effect.tscn" id="2_tsy8w"]
+[ext_resource type="Script" uid="uid://bu4n3w2upy3i7" path="res://addons/mef/runtime/presets/mef_event_preset.gd" id="3_xnl4r"]
+
+[resource]
+script = ExtResource("3_xnl4r")
+conditions = Array[PackedScene]([ExtResource("1_xnl4r")])
+effects = Array[PackedScene]([ExtResource("2_tsy8w")])
+metadata/_custom_type_script = "uid://bu4n3w2upy3i7"
