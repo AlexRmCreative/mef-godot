@@ -50,7 +50,6 @@ func start_event(instigator: Node3D = null) -> void:
 
 	_active_event = event
 
-	# Conectar señales ANTES de ejecutar
 	event.event_started.connect(func(ctx):
 		event_started.emit(ctx)
 	)
