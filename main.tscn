@@ -16,8 +16,8 @@ shape = SubResource("BoxShape3D_0xm2m")
 
 [node name="MEFEventTrigger" type="Node" parent="." unique_id=1272661947 node_paths=PackedStringArray("trigger_area")]
 script = ExtResource("1_0xm2m")
-preset = ExtResource("2_7mycd")
 trigger_area = NodePath("../Area3D")
+preset = ExtResource("2_7mycd")
 metadata/_custom_type_script = "uid://do80oveomd5r"
 
 [node name="NewCondition" parent="MEFEventTrigger" unique_id=289995711 instance=ExtResource("3_272bh")]

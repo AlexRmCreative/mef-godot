@@ -42,10 +42,15 @@ func start_event(instigator: Node3D = null) -> void:
 
 	var context := MEFEventContextFactory.from_trigger(self, instigator)
 
-	var event := preset.create_event(context, self)
+	var event := MEFEventFactory.create_from_preset(
+		preset,
+		context,
+		self
+	)
 
 	_active_event = event
 
+	# Conectar señales ANTES de ejecutar
 	event.event_started.connect(func(ctx):
 		event_started.emit(ctx)
 	)

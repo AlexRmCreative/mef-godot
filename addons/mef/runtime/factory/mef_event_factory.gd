@@ -2,7 +2,7 @@ extends RefCounted
 class_name MEFEventFactory
 
 
-func create_from_preset(
+static func create_from_preset(
 	preset: MEFEventPreset,
 	context: MEFEventContext,
 	scene_root: Node = null
