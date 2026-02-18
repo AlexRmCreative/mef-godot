@@ -1,50 +1,42 @@
 extends RefCounted
 class_name MEFEventEffectRunner
 
+signal effect_started(effect: MEFEffect, context: MEFEventContext)
+signal effect_finished(effect: MEFEffect, context: MEFEventContext)
+signal effect_cancelled(effect: MEFEffect, context: MEFEventContext)
 
 func run_effects(
 	effects: Array[MEFEffect],
 	context: MEFEventContext
 ) -> void:
+
+	# 🔹 Sort first by execution_group, then by priority
 	effects.sort_custom(func(a, b):
-		return a.priority < b.priority
+		if a.execution_group == b.execution_group:
+			return a.priority < b.priority
+		return a.execution_group < b.execution_group
 	)
 
-	var groups := {}
-	for effect in effects:
-		if not groups.has(effect.execution_group):
-			groups[effect.execution_group] = []
-		groups[effect.execution_group].append(effect)
-
-	var ordered_groups := groups.keys()
-	ordered_groups.sort()
-
 	var executed_effects: Array[MEFEffect] = []
-
-	for group_id in ordered_groups:
+	
+	for effect in effects:
 		if context.state != MEFEventContext.EventState.RUNNING:
 			_cancel_effects(executed_effects, context)
 			return
 
-		var tasks := []
+		executed_effects.append(effect)
 
-		for effect in groups[group_id]:
-			if context.state != MEFEventContext.EventState.RUNNING:
-				_cancel_effects(executed_effects, context)
-				return
+		effect_started.emit(effect, context)
 
-			executed_effects.append(effect)
+		if effect.is_async():
+			await effect.execute_async(context)
+		else:
+			effect.execute(context)
 
-			if effect.is_async():
-				tasks.append(effect.execute_async(context))
-			else:
-				effect.execute(context)
+		effect_finished.emit(effect, context)
 
-		for task in tasks:
-			await task
-
+	# 🔹 Finish phase
 	_finish_effects(executed_effects, context)
-
 
 func _cancel_effects(
 	effects: Array[MEFEffect],
@@ -53,7 +45,7 @@ func _cancel_effects(
 	for effect in effects:
 		if effect.cancellable:
 			effect.on_cancel(context)
-
+			effect_cancelled.emit(effect, context)
 
 func _finish_effects(
 	effects: Array[MEFEffect],

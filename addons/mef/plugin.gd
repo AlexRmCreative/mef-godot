@@ -4,7 +4,6 @@ extends EditorPlugin
 var inspector_plugin: EditorInspectorPlugin
 var fs_context_menu: EditorContextMenuPlugin
 
-
 func _enter_tree() -> void:
 
 	# -------------------------
@@ -29,7 +28,6 @@ func _enter_tree() -> void:
 		EditorContextMenuPlugin.CONTEXT_SLOT_FILESYSTEM_CREATE,
 		fs_context_menu
 	)
-
 
 func _exit_tree() -> void:
 

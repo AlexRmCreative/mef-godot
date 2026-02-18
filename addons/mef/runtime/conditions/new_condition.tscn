@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blkkldc5gaoqh"]
 
-[ext_resource type="Script" uid="uid://yt7dpy11mfeh" path="res://addons/mef/runtime/conditions/mef_condition.gd" id="1_imcop"]
+[ext_resource type="Script" uid="uid://yt7dpy11mfeh" path="res://addons/mef/runtime/conditions/base/mef_condition.gd" id="1_imcop"]
 
 [node name="NewCondition" type="Node" unique_id=289995711]
 script = ExtResource("1_imcop")

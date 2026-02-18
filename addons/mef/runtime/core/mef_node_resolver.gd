@@ -18,13 +18,11 @@ func get_conditions(root: Node) -> Array[MEFCondition]:
 
 func get_effects(root: Node) -> Array[MEFEffect]:
 	var result: Array[MEFEffect] = []
-
-	for child in root.get_children():
-		if child is MEFEffectsContainer:
-			for e in child.get_children():
-				if e is MEFEffect:
-					result.append(e)
-		elif child is MEFEffect:
-			result.append(child)
-
+	_collect_effects(root, result)
 	return result
+
+func _collect_effects(node: Node, result: Array[MEFEffect]) -> void:
+	for child in node.get_children():
+		if child is MEFEffect:
+			result.append(child)
+		_collect_effects(child, result)

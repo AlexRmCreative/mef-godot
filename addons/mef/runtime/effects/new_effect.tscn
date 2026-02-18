@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckovrb62asenv"]
 
-[ext_resource type="Script" uid="uid://dptssr7ceigls" path="res://addons/mef/runtime/effects/mef_effect.gd" id="1_dk58y"]
+[ext_resource type="Script" uid="uid://dptssr7ceigls" path="res://addons/mef/runtime/effects/base/mef_effect.gd" id="1_dk58y"]
 
 [node name="NewEffect" type="Node" unique_id=1994765067]
 script = ExtResource("1_dk58y")
