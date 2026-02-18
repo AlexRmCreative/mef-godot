@@ -2,15 +2,32 @@
 
 [ext_resource type="Script" uid="uid://do80oveomd5r" path="res://addons/mef/runtime/core/mef_event_trigger.gd" id="1_odqbd"]
 [ext_resource type="Script" uid="uid://dbbw3iybduotc" path="res://addons/mef/playground/trigger_event_button.gd" id="1_rqcha"]
+[ext_resource type="Theme" uid="uid://f5gvrsht663g" path="res://addons/mef/runtime/themes/demo_theme.tres" id="1_y3ftc"]
 [ext_resource type="Script" uid="uid://d3bi6c24pbaq8" path="res://addons/mef/playground/delay_timer_log.gd" id="2_yi47q"]
+[ext_resource type="Script" uid="uid://dv4l4keapp6t8" path="res://addons/mef/playground/stop_event_button.gd" id="3_u6ngo"]
 [ext_resource type="Script" uid="uid://0vbqnktti4y5" path="res://addons/mef/runtime/effects/built_in/mef_delay_effect.gd" id="4_odem5"]
 [ext_resource type="Script" uid="uid://dhlw7atrfw320" path="res://addons/mef/runtime/effects/built_in/mef_log_effect.gd" id="4_tujpi"]
+[ext_resource type="Script" uid="uid://dt1bx60muypjf" path="res://addons/mef/playground/event_log.gd" id="4_y3ftc"]
 [ext_resource type="Script" uid="uid://b1lew2cuecgax" path="res://addons/mef/runtime/effects/built_in/mef_context_node_value_effect.gd" id="5_0j0vy"]
 [ext_resource type="Script" uid="uid://tsqhteety0cc" path="res://addons/mef/runtime/effects/built_in/mef_call_method_effect.gd" id="5_odem5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gucxp"]
 font_size = 24
 font_color = Color(0.91764706, 0.91764706, 0.91764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3ftc"]
+bg_color = Color(0.7294118, 0.23921569, 0.23921569, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6ngo"]
+bg_color = Color(0.8405275, 0.30866936, 0.30436054, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="InteractiveEventFlowDemo" type="Control" unique_id=1076015850]
 layout_mode = 3
@@ -19,17 +36,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_y3ftc")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1257345359]
+[node name="Panel" type="Panel" parent="." unique_id=31876445]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.06666667, 0.07450981, 0.09411765, 1)
 
-[node name="VBoxContainer1" type="VBoxContainer" parent="." unique_id=1578788693]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Panel" unique_id=1578788693]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -45,36 +62,50 @@ grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer1" unique_id=1001506598]
+[node name="Label" type="Label" parent="Panel/VBoxContainer1" unique_id=1001506598]
 layout_mode = 2
 text = "MEF Interactive Demo
 "
 label_settings = SubResource("LabelSettings_gucxp")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer1" unique_id=224771083 node_paths=PackedStringArray("trigger")]
+[node name="TriggerEventButton" type="Button" parent="Panel/VBoxContainer1" unique_id=224771083 node_paths=PackedStringArray("trigger")]
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Trigger Event"
 script = ExtResource("1_rqcha")
-trigger = NodePath("../../MEFEventTrigger")
+trigger = NodePath("../../../MEFEventTrigger")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer1" unique_id=1717420407]
+[node name="CancelEventButton" type="Button" parent="Panel/VBoxContainer1" unique_id=1620804966 node_paths=PackedStringArray("trigger")]
+custom_minimum_size = Vector2(125, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_y3ftc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u6ngo")
+text = "Cancel"
+script = ExtResource("3_u6ngo")
+trigger = NodePath("../../../MEFEventTrigger")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer1" unique_id=1717420407]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DelayTimerLog" type="RichTextLabel" parent="VBoxContainer1/HBoxContainer" unique_id=1933899430]
+[node name="DelayTimerLog" type="RichTextLabel" parent="Panel/VBoxContainer1/HBoxContainer" unique_id=1933899430]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
+size_flags_stretch_ratio = 0.3
 scroll_active = false
 script = ExtResource("2_yi47q")
 
-[node name="EventLog" type="RichTextLabel" parent="VBoxContainer1/HBoxContainer" unique_id=1080344365]
+[node name="EventLog" type="RichTextLabel" parent="Panel/VBoxContainer1/HBoxContainer" unique_id=1080344365]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 0.7
+script = ExtResource("4_y3ftc")
 
 [node name="MEFEventTrigger" type="Node" parent="." unique_id=1720466519]
 script = ExtResource("1_odqbd")
@@ -82,9 +113,8 @@ metadata/_custom_type_script = "uid://do80oveomd5r"
 
 [node name="Early" type="Node" parent="MEFEventTrigger" unique_id=124689423]
 
-[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Early" unique_id=686073309 node_paths=PackedStringArray("log")]
+[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Early" unique_id=686073309]
 script = ExtResource("4_tujpi")
-log = NodePath("../../../VBoxContainer1/HBoxContainer/EventLog")
 message = "early event"
 execution_group = 0
 metadata/_custom_type_script = "uid://dhlw7atrfw320"
@@ -97,9 +127,8 @@ metadata/_custom_type_script = "uid://0vbqnktti4y5"
 
 [node name="Main" type="Node" parent="MEFEventTrigger" unique_id=1666291873]
 
-[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Main" unique_id=435901430 node_paths=PackedStringArray("log")]
+[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Main" unique_id=435901430]
 script = ExtResource("4_tujpi")
-log = NodePath("../../../VBoxContainer1/HBoxContainer/EventLog")
 message = "main event"
 metadata/_custom_type_script = "uid://dhlw7atrfw320"
 
@@ -109,9 +138,8 @@ metadata/_custom_type_script = "uid://0vbqnktti4y5"
 
 [node name="Late" type="Node" parent="MEFEventTrigger" unique_id=808921499]
 
-[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Late" unique_id=307905685 node_paths=PackedStringArray("log")]
+[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Late" unique_id=307905685]
 script = ExtResource("4_tujpi")
-log = NodePath("../../../VBoxContainer1/HBoxContainer/EventLog")
 message = "late event"
 execution_group = 200
 metadata/_custom_type_script = "uid://dhlw7atrfw320"
@@ -123,9 +151,8 @@ metadata/_custom_type_script = "uid://0vbqnktti4y5"
 
 [node name="Cleanup" type="Node" parent="MEFEventTrigger" unique_id=262336445]
 
-[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Cleanup" unique_id=511640852 node_paths=PackedStringArray("log")]
+[node name="MEFLogEffect" type="Node" parent="MEFEventTrigger/Cleanup" unique_id=511640852]
 script = ExtResource("4_tujpi")
-log = NodePath("../../../VBoxContainer1/HBoxContainer/EventLog")
 message = "finish"
 execution_group = 300
 metadata/_custom_type_script = "uid://dhlw7atrfw320"
@@ -133,13 +160,13 @@ metadata/_custom_type_script = "uid://dhlw7atrfw320"
 [node name="MEFSetContextNodeValueEffect" type="Node" parent="MEFEventTrigger/Cleanup" unique_id=561463591 node_paths=PackedStringArray("value")]
 script = ExtResource("5_0j0vy")
 key = &"event_log"
-value = NodePath("../../../VBoxContainer1/HBoxContainer/EventLog")
+value = NodePath("../../../Panel/VBoxContainer1/HBoxContainer/EventLog")
 execution_group = 300
 metadata/_custom_type_script = "uid://b1lew2cuecgax"
 
 [node name="MEFDelayEffect" type="Node" parent="MEFEventTrigger/Cleanup" unique_id=437302212]
 script = ExtResource("4_odem5")
-duration = 2.0
+duration = 3.0
 execution_group = 300
 priority = 1
 metadata/_custom_type_script = "uid://0vbqnktti4y5"
@@ -152,6 +179,9 @@ execution_group = 300
 priority = 2
 metadata/_custom_type_script = "uid://tsqhteety0cc"
 
-[connection signal="pressed" from="VBoxContainer1/Button" to="VBoxContainer1/Button" method="_on_pressed"]
-[connection signal="event_finished" from="MEFEventTrigger" to="VBoxContainer1/HBoxContainer/DelayTimerLog" method="_on_mef_event_trigger_event_finished"]
-[connection signal="event_started" from="MEFEventTrigger" to="VBoxContainer1/HBoxContainer/DelayTimerLog" method="_on_mef_event_trigger_event_started"]
+[connection signal="pressed" from="Panel/VBoxContainer1/TriggerEventButton" to="Panel/VBoxContainer1/TriggerEventButton" method="_on_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer1/CancelEventButton" to="Panel/VBoxContainer1/CancelEventButton" method="_on_pressed"]
+[connection signal="event_finished" from="MEFEventTrigger" to="Panel/VBoxContainer1/HBoxContainer/DelayTimerLog" method="_on_mef_event_trigger_event_finished"]
+[connection signal="event_finished" from="MEFEventTrigger" to="Panel/VBoxContainer1/HBoxContainer/EventLog" method="_on_mef_event_trigger_event_finished"]
+[connection signal="event_started" from="MEFEventTrigger" to="Panel/VBoxContainer1/HBoxContainer/DelayTimerLog" method="_on_mef_event_trigger_event_started"]
+[connection signal="event_started" from="MEFEventTrigger" to="Panel/VBoxContainer1/HBoxContainer/EventLog" method="_on_mef_event_trigger_event_started"]
