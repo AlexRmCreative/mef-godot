@@ -1,15 +1,11 @@
 [gd_resource type="Resource" script_class="MEFEventPreset" format=3 uid="uid://cs5kaiglqtqe2"]
 
 [ext_resource type="PackedScene" uid="uid://ckovrb62asenv" path="res://addons/mef/runtime/effects/new_effect.tscn" id="1_4o5tl"]
-[ext_resource type="PackedScene" uid="uid://dikjkgeafhpjq" path="res://lol.tscn" id="1_xnl4r"]
+[ext_resource type="PackedScene" uid="uid://blkkldc5gaoqh" path="res://addons/mef/runtime/conditions/new_condition.tscn" id="1_xnl4r"]
 [ext_resource type="Script" uid="uid://bu4n3w2upy3i7" path="res://addons/mef/runtime/presets/mef_event_preset.gd" id="3_xnl4r"]
-
-[sub_resource type="PackedScene" id="PackedScene_xnl4r"]
-
-[sub_resource type="PackedScene" id="PackedScene_tsy8w"]
 
 [resource]
 script = ExtResource("3_xnl4r")
-conditions = Array[PackedScene]([SubResource("PackedScene_xnl4r"), ExtResource("1_xnl4r"), SubResource("PackedScene_tsy8w")])
+conditions = Array[PackedScene]([ExtResource("1_xnl4r")])
 effects = Array[PackedScene]([ExtResource("1_4o5tl")])
 metadata/_custom_type_script = "uid://bu4n3w2upy3i7"

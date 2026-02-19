@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b0bjuecq3ir2r"]
+
+[ext_resource type="Script" uid="uid://cgd11xj0v3ain" path="res://addons/mef/runtime/triggers/mef_area3d_trigger.gd" id="1_m8bx5"]
+[ext_resource type="Resource" uid="uid://cs5kaiglqtqe2" path="res://addons/mef/runtime/presets/new_preset.tres" id="2_odw2s"]
+[ext_resource type="PackedScene" uid="uid://ckovrb62asenv" path="res://addons/mef/runtime/effects/new_effect.tscn" id="3_6hh2s"]
+[ext_resource type="PackedScene" uid="uid://blkkldc5gaoqh" path="res://addons/mef/runtime/conditions/new_condition.tscn" id="3_auif7"]
+[ext_resource type="Script" uid="uid://dptssr7ceigls" path="res://addons/mef/runtime/effects/base/mef_effect.gd" id="4_auif7"]
+[ext_resource type="Script" uid="uid://yt7dpy11mfeh" path="res://addons/mef/runtime/conditions/base/mef_condition.gd" id="4_u4qf1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m8bx5"]
+
+[node name="Main3d" type="Node3D" unique_id=929003554]
+
+[node name="MEFArea3DTrigger" type="Node" parent="." unique_id=1582430867 node_paths=PackedStringArray("trigger_area")]
+script = ExtResource("1_m8bx5")
+trigger_area = NodePath("../Area3D")
+preset = ExtResource("2_odw2s")
+metadata/_custom_type_script = "uid://cgd11xj0v3ain"
+
+[node name="NewCondition" type="Node" parent="MEFArea3DTrigger" unique_id=289995711 instance=ExtResource("3_auif7")]
+script = ExtResource("4_u4qf1")
+metadata/_custom_type_script = "uid://yt7dpy11mfeh"
+
+[node name="NewEffect" type="Node" parent="MEFArea3DTrigger" unique_id=1994765067 instance=ExtResource("3_6hh2s")]
+script = ExtResource("4_auif7")
+metadata/_custom_type_script = "uid://dptssr7ceigls"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1443515727]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1049969742]
+shape = SubResource("SphereShape3D_m8bx5")
